@@ -139,7 +139,7 @@ class Carousel extends React.Component {
             }
         };
         if (animated) {
-            this.pageAnimation = this.props.animation(this.state.scrollValue, index);
+            this.pageAnimation = this.props.animation(this.state.scrollValue, index, false);
             const animationId = this.state.scrollValue.addListener((state) => {
                 setIndex(state.value);
             });
@@ -250,7 +250,7 @@ class Carousel extends React.Component {
             React.createElement(react_native_1.Animated.View, { style: [
                     styles.pageIndicatorStyle, styles.activePageIndicatorStyle,
                     this.props.pageIndicatorStyle, this.props.activePageIndicatorStyle,
-                    { left: left }
+                    { left: left }, { useNativeDriver: false }
                 ] })));
     }
     render() {
@@ -296,7 +296,8 @@ Carousel.defaultProps = {
         return react_native_1.Animated.spring(animate, {
             toValue: toValue,
             friction: 10,
-            tension: 50
+            tension: 50,
+            useNativeDriver: false
         });
     }
 };
